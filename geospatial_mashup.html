@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+  <html>
+   <head>
+    <title>Geospatial Mashup</title>
+    <!-- CSS Leaflet.js -->
+    <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- JavaScript Leaflet.js -->
+    <script
+     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+      #map { width: 100%; height: 1100px; }
+    </style>
+    </head>
+    <body>
+    <div id="map"></div>
+    <script>
+    // Inisialisasi peta pada elemen dengan id 'map'
+    // setVew([lat, lng], zoomLevel)
+    var mymap = L.map('map').setView([-8.127830194933535, 113.21569952497502],17);
+    // Menambahkan basemap OpenStreetMap (gratis, tanpa API key)
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' 
+    }).addTo(mymap);
+    
+    // Marker — objek titik1
+    // L.marker([lat, lng]).addTo(map)
+    var marker = L.marker([-8.128186, 113.21861])
+    .addTo(mymap);
+    // Menambahkan popup pada marker
+    marker.bindPopup('<b>Gor Wira Bhakti Lumajang</b><br>Jl.Brigjen Slamet Riyadi Lumajang, Tompokersan, Kec. Lumajang, Kabupaten Lumajang, Jawa Timur 67316.');
+
+    // Marker — objek titik2
+    // L.marker([lat, lng]).addTo(map)
+    var marker = L.marker([-8.126327734875959, 113.21908050163363])
+    .addTo(mymap);
+    // Menambahkan popup pada marker
+    marker.bindPopup('<b>SMPN 1 Lumajang</b><br>Jl. H. O.S. Cokroaminoto No.159, Tompokersan, Kec. Lumajang, Kabupaten Lumajang, Jawa Timur 67311.');
+    
+    // Circle — objek lingkaran
+    // Parameter: koordinat pusat, opsi styling
+    var circle = L.circle([-8.125936548124455, 113.21880550769728], {
+    color: '#FF9d14', // Warna garis tepi
+    fillColor: '#FFEBC0', // Warna isian
+    fillOpacity: 0.5, // Transparansi isian (0.0 – 1.0)
+    radius: 150 // Radius dalam meter
+    }).addTo(mymap);
+    circle.bindPopup('Radius 150 meter antar sekolah.');
+   
+    // Polygon - objek area
+    var polygon = L.polygon([
+    [-8.130371, 113.218270], [-8.13049, 113.220163],
+    [-8.132473, 113.219855], [-8.13205, 113.217885]
+    ], { color: '#3a2e8b', fillColor: '#00d9ff', fillOpacity: 0.3 })
+    .addTo(mymap);
+    polygon.bindPopup('Kawasan Permukiman Citrodiwangsan');
+    
+    // Polyline - objek garis
+    var polyline = L.polyline([
+    [-8.126004, 113.218728], [-8.125349, 113.218816],
+    [-8.124999, 113.216400], [-8.129983, 113.215206], 
+    [-8.130262, 113.218550]
+    ], { color: '#000000', weight: 4, opacity: 0.8 })
+    .addTo(mymap);
+    polyline.bindPopup('Dari sekolah ke rumah');
+</script>
+</body>
+</html>
